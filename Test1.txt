@@ -1,2 +1,5 @@
-
 This is a test
+
+Adding more lines using Bash. This is amazing!
+
+Adding third and fourth lines here
