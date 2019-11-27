@@ -29,7 +29,7 @@ Please list the names of the facilities that do. */
 
 SELECT name, membercost
 FROM Facilities
-WHERE membercost >0
+WHERE membercost > 0
 ORDER BY membercost DESC
 
 
@@ -51,6 +51,7 @@ SELECT  facid,
 		monthlymaintenance
 FROM Facilities
 WHERE membercost < (.20 * monthlymaintenance)
+ORDER BY membercost DESC
 
 /* Q4: How can you retrieve the details of facilities with ID 1 and 5?
 Write the query without using the OR operator. */
@@ -75,16 +76,32 @@ CASE
 	ELSE "Cheap"
 END AS Pricing_Group
 FROM Facilities
+ORDER BY monthlymaintenance DESC
 
 
 /* Q6: You'd like to get the first and last name of the last member(s)
 who signed up. Do not use the LIMIT clause for your solution. */
+
+SELECT  firstname,
+		surname,
+		joindate
+FROM `Members`
+ORDER BY joindate DESC
 
 
 /* Q7: How can you produce a list of all members who have used a tennis court?
 Include in your output the name of the court, and the name of the member
 formatted as a single column. Ensure no duplicate data, and order by
 the member name. */
+
+SELECT DISTINCT f.name AS Court_names,
+				CONCAT(m.firstname,' ',m.surname) AS Member_names
+	FROM Bookings b
+	JOIN Members m ON b.memid = m.memid
+	AND m.memid > 0
+	JOIN Facilities f ON b.facid = f.facid	
+WHERE b.facid < 2
+ORDER BY 2
 
 
 /* Q8: How can you produce a list of bookings on the day of 2012-09-14 which
