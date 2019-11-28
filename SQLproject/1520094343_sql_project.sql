@@ -112,16 +112,18 @@ Order by descending cost, and do not use any subqueries. */
 
 SELECT  f.name as facility_name,
 		CONCAT(m.firstname,' ',m.surname) AS Member_names,
-		CASE WHEN b.memid = 0 THEN (b.slots * f.guestcost)
-			 ELSE (b.slots * f.membercost)
-		END as cost
+CASE
+	WHEN b.memid = 0 THEN (b.slots * f.guestcost)
+	ELSE (b.slots * f.membercost)
+END AS cost
 FROM Bookings b
 JOIN Facilities f ON b.facid = f.facid
 	 AND b.starttime LIKE '2012-09-14%'
 JOIN Members m ON b.memid = m.memid
-	WHERE (CASE WHEN b.memid = 0 THEN (b.slots * f.guestcost)
-            ELSE (b.slots * f.membercost)
-       END) > 30
+	WHERE 	(CASE 
+				WHEN b.memid = 0 THEN (b.slots * f.guestcost)
+				ELSE (b.slots * f.membercost)
+			END) > 30
 ORDER BY 3 DESC
 
 
@@ -134,9 +136,10 @@ SELECT  sq.facility_name,
 FROM Members m
 JOIN (SELECT f.name as facility_name,
 			b.memid as memid,
-			CASE WHEN b.memid = 0 THEN (b.slots * f.guestcost)
-				 ELSE (b.slots * f.membercost)
-			END as cost		
+			CASE
+				WHEN b.memid = 0 THEN (b.slots * f.guestcost)
+				ELSE (b.slots * f.membercost)
+			END AS cost		
 	FROM Bookings b
 	JOIN Facilities f ON b.facid = f.facid
 	AND b.starttime LIKE '2012-09-14%') sq	ON m.memid = sq.memid
@@ -147,3 +150,29 @@ ORDER BY 3 DESC
 /* Q10: Produce a list of facilities with a total revenue less than 1000.
 The output of facility name and total revenue, sorted by revenue. Remember
 that there's a different cost for guests and members! */
+
+SELECT f.name AS facility_name,
+       sq1.total_revenue
+FROM Facilities f
+JOIN (
+    SELECT f.facid as facid,
+			sum(CASE
+					WHEN sq2.user_type = 'Guest' THEN sq2.total_slots * f.guestcost
+                    ELSE sq2.total_slots * f.membercost
+				END) AS total_revenue
+    FROM Facilities f
+    JOIN (
+        SELECT 	f.facid AS facid,
+				CASE 
+					WHEN b.memid = 0 THEN 'Guest' 
+					ELSE 'Member' 
+				END AS user_type,
+               sum(b.slots) AS total_slots
+        FROM Bookings b
+        JOIN Facilities f ON b.facid = f.facid
+        GROUP BY facid, user_type
+    ) sq2 ON f.facid = sq2.facid
+    GROUP BY 1
+) sq1 ON f.facid = sq1.facid
+WHERE sq1.total_revenue < 1000
+ORDER BY 2
