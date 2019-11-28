@@ -30,7 +30,7 @@ Please list the names of the facilities that do. */
 SELECT name, membercost
 FROM Facilities
 WHERE membercost > 0
-ORDER BY membercost DESC
+--ORDER BY membercost DESC
 
 
 /* Q2: How many facilities do not charge a fee to members? */
@@ -50,16 +50,14 @@ SELECT  facid,
 		membercost,
 		monthlymaintenance
 FROM Facilities
-WHERE membercost < (.20 * monthlymaintenance)
-ORDER BY membercost DESC
+WHERE membercost > 0
+AND membercost < (.20 * monthlymaintenance)
+--ORDER BY membercost DESC
 
 /* Q4: How can you retrieve the details of facilities with ID 1 and 5?
 Write the query without using the OR operator. */
 
-SELECT  facid, 
-	 	name,
-		membercost,
-		monthlymaintenance
+SELECT *
 FROM Facilities
 WHERE facid IN (1,5)
 
@@ -76,7 +74,7 @@ CASE
 	ELSE "Cheap"
 END AS Pricing_Group
 FROM Facilities
-ORDER BY monthlymaintenance DESC
+--ORDER BY monthlymaintenance DESC
 
 
 /* Q6: You'd like to get the first and last name of the last member(s)
@@ -85,8 +83,9 @@ who signed up. Do not use the LIMIT clause for your solution. */
 SELECT  firstname,
 		surname,
 		joindate
-FROM `Members`
-ORDER BY joindate DESC
+FROM Members
+WHERE joindate = (SELECT MAX(joindate) FROM Members)
+--ORDER BY joindate DESC
 
 
 /* Q7: How can you produce a list of all members who have used a tennis court?
@@ -110,6 +109,8 @@ different costs to members (the listed costs are per half-hour 'slot'), and
 the guest user's ID is always 0. Include in your output the name of the
 facility, the name of the member formatted as a single column, and the cost.
 Order by descending cost, and do not use any subqueries. */
+
+
 
 
 /* Q9: This time, produce the same result as in Q8, but using a subquery. */
