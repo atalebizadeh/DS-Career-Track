@@ -110,10 +110,38 @@ the guest user's ID is always 0. Include in your output the name of the
 facility, the name of the member formatted as a single column, and the cost.
 Order by descending cost, and do not use any subqueries. */
 
+SELECT  f.name as facility_name,
+		CONCAT(m.firstname,' ',m.surname) AS Member_names,
+		CASE WHEN b.memid = 0 THEN (b.slots * f.guestcost)
+			 ELSE (b.slots * f.membercost)
+		END as cost
+FROM Bookings b
+JOIN Facilities f ON b.facid = f.facid
+	 AND b.starttime LIKE '2012-09-14%'
+JOIN Members m ON b.memid = m.memid
+	WHERE (CASE WHEN b.memid = 0 THEN (b.slots * f.guestcost)
+            ELSE (b.slots * f.membercost)
+       END) > 30
+ORDER BY 3 DESC
 
 
 
 /* Q9: This time, produce the same result as in Q8, but using a subquery. */
+
+SELECT  sq.facility_name,
+		CONCAT(m.firstname,' ',m.surname) AS Member_names,
+		sq.cost
+FROM Members m
+JOIN (SELECT f.name as facility_name,
+			b.memid as memid,
+			CASE WHEN b.memid = 0 THEN (b.slots * f.guestcost)
+				 ELSE (b.slots * f.membercost)
+			END as cost		
+	FROM Bookings b
+	JOIN Facilities f ON b.facid = f.facid
+	AND b.starttime LIKE '2012-09-14%') sq	ON m.memid = sq.memid
+WHERE sq.cost > 30
+ORDER BY 3 DESC
 
 
 /* Q10: Produce a list of facilities with a total revenue less than 1000.
