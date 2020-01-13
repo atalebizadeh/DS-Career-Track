@@ -1,0 +1,8 @@
+A Note on Normalization
+As explained in the lesson, the concept 'normalization' has different meanings in different contexts.
+
+There are two materials which we find particularly useful:
+
+1) The Wikipedia article on Feature scaling: https://en.wikipedia.org/wiki/Feature_scaling
+
+2) This article on L1-norm and L2-norm: http://www.chioka.in/differences-between-the-l1-norm-and-the-l2-norm-least-absolute-deviations-and-least-squares/
