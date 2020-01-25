@@ -1,0 +1,15 @@
+conda install -c conda-forge proj4
+
+
+If it finds it, it should be in something like:
+
+C:\Utilities\Python\Anaconda\Library\Share (it's where mine was, as well as \pkgs\ places where I guess it puts the package itself - and those can work too if need be, I used them at first, but the library one should work through updates better (maybe)).
+
+Use the following code before importing Basemap and it'll work. Sets the environment variable PROJ_LIB to wherever epsg is and then Basemap can be happy.
+
+import os
+os.environ["PROJ_LIB"] = "C:\\Utilities\\Python\\Anaconda\\Library\\share"; #fixr
+from mpl_toolkits.basemap import Basemap
+As a nice bonus, to get hi-res data of Basemap, which Anaconda doesn't include in the Basemap install to start, type into "Anaconda Prompt":
+
+conda install -c conda-forge basemap-data-hires
