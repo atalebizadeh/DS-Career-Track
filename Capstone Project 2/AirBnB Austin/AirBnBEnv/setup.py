@@ -12,19 +12,19 @@ def readme():
 
 
 setup(
-    name='titanic',
+    name='airbnb',
     version='0.1',
-    description='Analysis of the Titanic dataset',
+    description='Analysis of the AirBnB Austin',
     long_description=readme(),
     classifiers=[
         'Programming Language :: Python :: 3',
     ],
     # Substitute <github_account> with the name of your GitHub account
-    url='https://github.com/<github_account>/titanic_datascience',
+    url='https://github.com/atalebizadeh/DS-Career-Track/tree/master/Capstone%20Project%202/AirBnB%20Austin/AirBnBEnv',
     author='Alireza Talebizadeh',  # Substitute your name
     author_email='alireza.talebizadeh@gmail.com',  # Substitute your email
     license='MIT',
-    packages=['titanic'],
+    packages=['AirBnB'],
     install_requires=[
       	'pypandoc>=1.4'
     ]
