@@ -1,16 +1,11 @@
-Airbnb doesn’t release any data on the listings in its marketplace, a but separate group named Inside Airbnb has extracted data on a sample of the listings for many of the major cities on the website. In this post, we’ll be working with their data set Compiled on March 17th, 2020, on the listings from Austin, TX.
+Airbnb is a home-sharing platform that allows property owners (‘hosts’) to put their spare room, apartment or home (‘listings’) online, so that guests can pay to stay in them in thousands of cities worldwide. Hosts are expected to set their own prices for their listings. Currently Airbnb and other sites provide some general guidance, but with this project we are trying to improve  our base price services which help hosts price their properties using a wide range of data points.
 
-Each row in the data set is a specific listing that’s available for renting on Airbnb in the Austin area. In machine learning terms, each row is an observation. The columns describe different characteristics of each listing (features, in machine learning terms).
+Each year, Austin plays host to a large number of events such as ACL Festival and SXSW. We would expect that properties near downtown have higher asking prices based on the convenience of location to some of these events. Airbnb pricing is important to get right, particularly during these events where there is lots of competition and even small changes in prices can make a big difference. Price too high and no one will book. Price too low and you’ll be missing out on a lot of potential income. 
 
-To make the data set less cumbersome to work with, we’ve removed many of the columns in the original data set and renamed the file to dc_airbnb.csv.
+The client in this case would be Airbnb and they care about this problem because by suggesting the right rental price for each property, they can help their hosts to be profitable while at the same time helping their guests to get fair rental prices.
+Instead of breaking down statistics by ZIP code, we want to generalize the sections of Austin for ease of discussion and analysis so we decided to break the city into five regions: Central (downtown and nearby areas), East, West, North, and South.
 
-Here are some of the more important columns (features) we’ll want to work with, because these are all characteristics that a renter might use to assess which listing they will choose:
+The dataset that we are using in this project is listings.csv file which was compiled on March 17th, 2020 and was downloaded from http://insideairbnb.com/get-the-data.html for the city of Austin. The dataset contains 11,668 rows and 106 columns including the id column being used as the index.
 
-accommodates: the number of guests the rental can accommodate
-bedrooms: number of bedrooms included in the rental
-bathrooms: number of bathrooms included in the rental
-beds: number of beds included in the rental
-price: nightly price for the rental
-minimum_nights: minimum number of nights a guest can stay for the rental
-maximum_nights: maximum number of nights a guest can stay for the rental
-number_of_reviews: number of reviews that previous guests have left
+
+
