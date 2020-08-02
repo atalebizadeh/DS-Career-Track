@@ -12,6 +12,7 @@ We assume that the data of the water pumps were collected using handheld sensors
 There are some features with missing values. The most noticeable features with missing values are ‘construction_year’, ‘gps_height’, ’population’, ‘amount_tsh’, ’latitude’ and ‘longitude’. For example, you can see that approximately 35% of the ‘construction_year’ feature contains 0 (20709 rows) . We also have 36% (21,381 rows) of ‘population’ with the value of 0 and 12% of this feature with the value of 1. For other features like ‘amount_tsh’, we have about 70% of rows with the value of 0 and ‘gps_height’ feature with 34.5% of rows with the value of 0.
 We need to be deciding whether to drop them, fill the missing values with the mean and median based on the region they are in, or to assign them to a ‘Missing’ or ‘Unknown’ category.
 
+![](Docs/Pump%20Savings%20-%20With%20Model%20and%20No%20Model.JPG)
 
 
 
