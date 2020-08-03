@@ -1,4 +1,10 @@
-**1. Problem Statement:**
+**1. Overview:**
+Water is critical to a country’s development, as it is not only used in agriculture but also for industrial development. Whether it’s a drink from the tap, a toilet that works, or a place to wash our hands, having water is a basic necessity that many of us take for granted. But in many parts of the world, women and children spend more than four hours walking for water each day. 
+Some African countries like Tanzania have large water resources, but they still face the dilemmas where many areas have no reliable access to clean water because these resources are distributed unevenly. During the dry season, which usually lasts from June to October, even large rivers can dry up or their flow declines substantially. 
+In this project, we will use Machine Learning methods to help the Government of Tanzania with predicting which pumps are most likely to stop working so they can be prepared for the pump failure in advance. A smart understanding of which waterpoints will fail can improve maintenance operations and ensure that clean, potable water is available to communities across Tanzania and the results of this project will aid the maintenance, process and costs.
+The Random Forest model is able to predict **85%** of the pump statuses correctly and the results of this model can be used to skip checking the functional pumps manually throughout Tanzania which would save us **$1,446,300** using a **90% functional rate** that can be used to lower the cost of the faulty pumps replacements in the future. If a pump is non functional, it requires immediate attention as the population dependent on that water source cannot access clean water.‬
+
+**1.1 Problem Statement:**
 Hand-driven and gravity fed pumps are still a main source of potable water in Tanzania and the maintenance of these pumps is an ongoing issue. Because many communities either don't have the funds or the knowledge to maintain these pumps, they're constantly breaking! The purpose of this challenge is to predict which pumps will not be functional or need repair in the future, in order to expedite the process of locating, examining, and fixing the pumps.
 
 **2. Data:**
